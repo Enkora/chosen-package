@@ -1269,7 +1269,7 @@
         // artem added
         var _this = this;
         this.container.find('.multi-clear').remove();
-        if (this.choices > 1) {
+        if (this.selected_option_count > 1) {
           html = '<li class="multi-clear search-choice" style="background:#FFE0E0">Clear All' +
             '<a href="javascript:void(0)" class="search-choice-close"></a></li>';
 
