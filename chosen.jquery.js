@@ -1074,6 +1074,23 @@
 
     Chosen.prototype.result_deselect = function(pos) {
       var result_data;
+      
+      // artem added
+      //console.log('Clear: ' + pos);
+      // clear items
+      if (pos === undefined) {
+        this.form_field_jq.find('option').prop('selected', false);
+        //console.log('Clear all!');
+        // callling only once is enough
+        if (this.results_data.length > 0)
+          this.result_deselect(0);
+
+        this.results_update_field();
+
+        return true;
+      }
+	    // =============
+
       result_data = this.results_data[pos];
       if (!this.form_field.options[result_data.options_index].disabled) {
         result_data.selected = false;
@@ -1244,9 +1261,25 @@
         if (w > f_width - 10) {
           w = f_width - 10;
         }
-        return this.search_field.css({
+
+        this.search_field.css({
           'width': w + 'px'
         });
+
+        // artem added
+        var _this = this;
+        this.container.find('.multi-clear').remove();
+        if (this.choices > 1) {
+          html = '<li class="multi-clear search-choice" style="background:#FFE0E0">Clear All' +
+            '<a href="javascript:void(0)" class="search-choice-close"></a></li>';
+
+	         this.search_container.before(html);
+          link = this.container.find('.multi-clear').find("a").first();
+          return link.click(function (evt) {
+            return _this.choice_destroy_link_click(evt);
+          });
+        }
+	      // ==========
       }
     };
 
