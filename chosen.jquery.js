@@ -1036,6 +1036,9 @@
           this.reset_single_select_options();
         }
         high.addClass("result-selected");
+        if (!this.display_selected_options) // artem addition
+          high.addClass("hide-selected");
+
         item = this.results_data[high[0].getAttribute("data-option-array-index")];
         item.selected = true;
         this.form_field.options[item.options_index].selected = true;
