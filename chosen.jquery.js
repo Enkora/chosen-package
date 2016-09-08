@@ -1078,7 +1078,7 @@
       // artem added
       //console.log('Clear: ' + pos);
       // clear items
-      if (pos === undefined) {
+      if (pos === undefined || pos === null) {
         this.form_field_jq.find('option').prop('selected', false);
         //console.log('Clear all!');
         // callling only once is enough
