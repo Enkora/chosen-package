@@ -146,6 +146,7 @@
       this.display_disabled_options = this.options.display_disabled_options != null ? this.options.display_disabled_options : true;
       this.include_group_label_in_selected = this.options.include_group_label_in_selected || false;
       this.max_shown_results = this.options.max_shown_results || Number.POSITIVE_INFINITY;
+      this.dont_hide_results_after_click = this.options.dont_hide_results_after_click || false; // artem added
       return this.case_sensitive_search = this.options.case_sensitive_search || false;
     };
 
@@ -1044,7 +1045,7 @@
         } else {
           this.single_set_selected_text(this.choice_label(item));
         }
-        if (!((evt.metaKey || evt.ctrlKey) && this.is_multiple)) {
+        if (!((evt.metaKey || evt.ctrlKey || this.dont_hide_results_after_click) && this.is_multiple)) { // artem added
           this.results_hide();
         }
         this.show_search_field_default();
